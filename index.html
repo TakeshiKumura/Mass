@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>原始ピタゴラス数を取得</title>
+</head>
+<body>
+  <h1>原始ピタゴラス数</h1>
+  <button onclick="fetchTriples()">取得</button>
+  <pre id="output"></pre>
+
+  <script>
+    async function fetchTriples() {
+      const response = await fetch("http://localhost:8000/triples?limit=100");
+      const data = await response.json();
+      const formatted = data.triples.map(t => `(${t[0]}, ${t[1]}, ${t[2]})`).join('\n');
+      document.getElementById("output").textContent = formatted;
+    }
+  </script>
+</body>
+</html>
